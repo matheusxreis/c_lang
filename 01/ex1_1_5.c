@@ -8,9 +8,24 @@ int mpow(int base, int exp);
 int read_binary(int binary[], int size);
 int convert_to_binary(int number, int binary[32]);
 
-int add_binary(int b1[], int b2[], int size1, int size2, int result[]);
-int sub_binary(int b1[], int b2[], int size1, int size2, int result[]);
-int mult_binary(int b1[], int b2[], int size1, int size2, int result[]);
+enum Operation {
+  ADD,
+  MULTIPLY,
+  SUB
+};
+
+typedef struct {
+  enum Operation operation;
+  int size1;
+  int size2;
+  int b1[32];
+  int b2[32];
+  int result[32];
+} Parameters;
+
+
+int calculate(Parameters params);
+Parameters make_parameters(int b1[], int b2[], int size1, int size2, enum Operation operation); 
 
 int main() {
 
@@ -20,8 +35,6 @@ int main() {
   int binary5[] = {1, 0, 1, 1}; //11
   int binary4_copy[] = {0, 1, 0, 1}; //5
   int binary6[] = {0, 0, 0, 0, 0, 0}; //0;
-
-
 
   int size1 = sizeof(binary1)/sizeof(binary1[0]);
   int size2 = sizeof(binary2)/sizeof(binary2[0]);
@@ -45,159 +58,96 @@ int main() {
   
   int binary_test[32] = {};
   
-  // add_binary
-  assert(add_binary(
-         binary1,
-         binary2,
-         size1,
-         size2,
-         binary_test
-        ) == 26);
-  
-  assert(add_binary( 
-        binary4,
-        binary1,
-        size4,
-        size1, 
-        binary_test
-        ) == 15);
-
-  assert(add_binary( 
-        binary4,
-        binary2,
-        size4,
-        size2, 
-        binary_test
-        ) == 21);
-
-  assert(add_binary(
-        binary4,
-        binary4_copy,
-        size4, 
-        size4, 
-        binary_test
-        ) == 10);
+  // add_binaryI
+  Parameters params = make_parameters(binary1, binary2, size1, size2, ADD);
+  assert(calculate(params) == 26);
+  params = make_parameters(binary4, binary1, size4, size1, ADD);
+  assert(calculate(params) == 15);
+  params = make_parameters(binary4, binary2, size4, size2, ADD);
+  assert(calculate(params) == 21);
+  params = make_parameters(binary4, binary4_copy, size4, size4, ADD);
+  assert(calculate(params) == 10);
 
   // sub_binary  
-  assert(sub_binary(
-         binary2,
-         binary1,
-         size2,
-         size1,
-         binary_test
-        ) == 6);
-  
-  assert(sub_binary( 
-        binary2,
-        binary4,
-        size2,
-        size4, 
-        binary_test
-        ) == read_binary(binary5, size5));
-
-  assert(sub_binary(
-        binary4,
-        binary4_copy,
-        size4, 
-        size4, 
-        binary_test
-        ) == 0);
-
+  params = make_parameters(binary2, binary1, size2, size1, SUB);
+  assert(calculate(params) == 6);
+  params = make_parameters(binary2, binary4, size2, size4, SUB);
+  assert(calculate(params) == read_binary(binary5, size5));
+  params = make_parameters(binary4, binary4_copy, size4, size4, SUB);
+  assert(calculate(params) == 0);
 
   // mult_binary
-  
- assert(mult_binary(
-         binary2,
-         binary1,
-         size2,
-         size1,
-         binary_test
-        ) == 160);
-  
-  assert(mult_binary( 
-        binary2,
-        binary4,
-        size2,
-        size4, 
-        binary_test
-        ) == 80);
 
-  assert(mult_binary(
-        binary4,
-        binary4_copy,
-        size4, 
-        size4, 
-        binary_test
-        ) == 25);
+  params = make_parameters(binary2, binary1, size2, size1, MULTIPLY);
+  assert(calculate(params) == 160);
+  params = make_parameters(binary2, binary4, size2, size4, MULTIPLY);
+  assert(calculate(params) == 80);
+  params = make_parameters(binary4, binary4_copy, size4, size4, MULTIPLY);
+  assert(calculate(params) == 25);
 
   // case of negative result  
 
-  assert(sub_binary(
-        binary1,
-        binary2, 
-        size1, 
-        size2, 
-        binary_test
-        ) == 0);
+  params = make_parameters(binary1, binary2, size1, size2, SUB);
+  assert(calculate(params) == 0);
 
   return 0;
 };
 
 
-int mult_binary(
-    int b1[], 
-    int b2[], 
-    int size1, 
-    int size2,
-    int b3[]
-    ) {
 
-  int number1 = read_binary(b1, size1);
-  int number2 = read_binary(b2, size2);
+Parameters make_parameters(int b1[], int b2[], int size1, int size2, enum Operation operation) {
 
-  int result = number1 * number2;
+  Parameters params;
+  for(int i = 0; i <= size1; i++) {
+    params.b1[i] = b1[i];
+  };
+  for(int i = 0; i <= size2; i++) {
+    params.b2[i] = b2[i];
+  };
   
-  if(convert_to_binary(result, b3) == 0) { return 0; }
+  params.size1 = size1;
+  params.size2 = size2; 
+  params.result[0] = 0;
+  params.operation = operation;
 
+  return params;
+  
 
-  return result;
 }
 
-int sub_binary(
-    int b1[], 
-    int b2[], 
-    int size1, 
-    int size2,
-    int b3[]
-    ) {
+int calculate(Parameters params) {
 
-  int number1 = read_binary(b1, size1);
-  int number2 = read_binary(b2, size2);
+  int number1 = read_binary(params.b1, params.size1);
+  int number2 = read_binary(params.b2, params.size2);
 
-  int result = number1 - number2;
+  int result = 0;
 
-  if(convert_to_binary(result, b3)==0) { return 0;} 
+  char op;
+  switch(params.operation) {
+    case ADD:
+      result = number1 + number2;
+      op = '+';
+      break;
+    case MULTIPLY:
+      result = number1 * number2;
+      op = '*';
+      break;
+    case SUB:
+      op = '-';
+      result = number1 - number2;
+      break;
+  }; 
   
-  return result;
-}
-
-int add_binary(
-    int b1[], 
-    int b2[], 
-    int size1, 
-    int size2,
-    int b3[]
-    ) {
-
-  int number1 = read_binary(b1, size1);
-  int number2 = read_binary(b2, size2);
-
-  int result = number1 + number2;
+  if(convert_to_binary(result, params.result) == 0) { return 0; }
   
-  if(convert_to_binary(result, b3) == 0) { return 0; };
+  printf("%d %c %d = %d => ", number1, op, number2, result);  
+  for(int i = 0; i<= 32 ;i++) {
+    printf("%d", params.result[i]);
+  };
+  printf("\n");
 
   return result;
-}
+};
 
 int convert_to_binary(int number, int result[32]) {
 
@@ -219,6 +169,12 @@ int convert_to_binary(int number, int result[32]) {
     
     }
    n = n/2;
+   i--;
+  }
+
+  while(i>=0) {
+      
+    result[i] = 0;
     i--;
   }
 
