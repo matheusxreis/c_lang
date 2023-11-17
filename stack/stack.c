@@ -36,7 +36,7 @@ int main() {
 
  bool overflow;
 
- for(int i = 0; i < 101; i++) { pushandtest(&s, &items[0], &overflow); };
+ for(int i = 0; i < 100; i++) { pushandtest(&s, &items[0], &overflow); };
 
  if(overflow) { printf("\nOccurs overflow =(\n"); }
  else { printf("\nAll is ok, folks!\n"); };
@@ -73,6 +73,13 @@ eltype pop(struct Stack* s){
   return s->items[s->top--];
 };
 void push(struct Stack* s, eltype i){
+  // We shouldn't worry about overflow because a Stack has not limit
+  // but in this implementation, as items in Stack are arrays, 
+  // we must worry about.
+  if(s->top >= STACKSIZE - 1) {
+    printf("Overflow occurs\n");
+    exit(0);
+  };
   s->items[++(s->top)] = i;
 };
 
