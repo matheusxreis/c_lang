@@ -2,8 +2,7 @@
 #include<stdbool.h>
 
 #define STACKSIZE 100
-
-extern int INITIAL_TOP_VALUE;
+#define INITIAL_TOP_VALUE -1
 
 typedef void* eltype;
 
