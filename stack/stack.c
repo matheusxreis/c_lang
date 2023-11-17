@@ -18,13 +18,32 @@ int main() {
     eltype i = pop(&s);
     printf("%c", *(char*)i);
   };
- // pop(&s); -> underflow;
+
+  bool underflow;
+  popandtest(&s, i, &underflow);
+
+
+  if(underflow) {  printf("\nOccurs underflow =( \n"); }
+  else { printf("\nAll is ok, folks! \n"); };
+  //pop(&s); //-> underflow;
  // stacktop(&s); -> underflow occurs;
   if(empty(&s)) {
     printf("\nStack is empty =D \n");
   }else {
     printf("\nStack is not empty D= \n");
-  }
+  };
+
+
+ bool overflow;
+
+ for(int i = 0; i < 101; i++) { pushandtest(&s, &items[0], &overflow); };
+
+ if(overflow) { printf("\nOccurs overflow =(\n"); }
+ else { printf("\nAll is ok, folks!\n"); };
+
+ eltype it = stacktop(&s);
+ 
+ printf("Top into stack: %c\n", *(char*)it); 
 };
 
 
@@ -57,4 +76,25 @@ void push(struct Stack* s, eltype i){
   s->items[++(s->top)] = i;
 };
 
+void popandtest(struct Stack* s, eltype i, bool* underflow){
+
+  if(empty(s)){
+    *(underflow) = true;
+    return;
+  };
+  *(underflow) = false;
+  i = s->items[s->top--];
+
+};
+
+void pushandtest(struct Stack* s, eltype i, bool* overflow) {
+
+ if(s->top >= STACKSIZE - 1){
+    *(overflow) = true;
+    return;
+ };
+ *(overflow) = false;
+
+ s->items[++(s->top)] = i;
+};
 

@@ -35,7 +35,7 @@ extern eltype pop(struct Stack* s);
 /*
  * stacktop()
  * Returns last item that have been added into stack
- * underflow can occurs here
+ * underflow can occurs here and generally, it implies end of program
  */
 extern eltype stacktop(struct Stack* s);
 
@@ -48,3 +48,20 @@ extern bool empty(struct Stack* s);
  * Init a Stack
  */
 extern struct Stack create();
+
+
+/*
+ * popandtest()
+ * Stores last item in eltype i parameters, and remove it from stack
+ * Underflow can occurs here, but it dont implies on the end of program
+ */
+extern void popandtest(struct Stack* s, eltype i, bool* underflow);
+
+/*
+ * pushandtest()
+ * Add eltype i into stack, and in case of overflow it doesn't implies end of program;
+ */
+extern void pushandtest(struct Stack* s, eltype i, bool* overflow);
+
+
+
