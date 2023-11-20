@@ -7,15 +7,15 @@
  *  ')' -> Todos tem precedência sobre ele; sempre desempilhará a stack;
  */
 
-int main() {
+//int main() {
 
 
-  char* infix = "1+2+3+4+5";
-  char* post;
-  postfix(infix, post);
-  printf("Postfix => %s\n", post);
+  //char* infix = "1+2+3+4+5";
+  //char* post;
+  //postfix(infix, post);
+  //printf("Postfix => %s\n", post);
 
-};
+//};
 
 void postfix(char* infix, char* postr) {
 
