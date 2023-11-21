@@ -2,12 +2,13 @@
 #include"stack_float.c"
 #include <ctype.h>
 #include <math.h>
+#include <stdlib.h>
 #include"postfix.c"
 
 int main() {
 
   char* prefix = "3+(7*9)/(9+1)^3";
-  char* post;
+  char* post = malloc(sizeof(*prefix));
 
   postfix(prefix, post);
   float result = eval(post);
