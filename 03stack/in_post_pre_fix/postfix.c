@@ -1,21 +1,26 @@
 #include"postfix.h"
 #include"stack_char.c"
 #include<ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
  * '(' -> Não tem precedência sobre ninguém e ninguém tem sobre ele; quando comparado nunca desempilhará a stack;
  *  ')' -> Todos tem precedência sobre ele; sempre desempilhará a stack;
  */
 
-//int main() {
+bool isoper(char c) {
+  
+  return c == '*'
+    || c == '+'
+    || c == '-'
+    || c == '/'
+    || c == '^';
+    //|| c == '(';
+};
 
 
-  //char* infix = "1+2+3+4+5";
-  //char* post;
-  //postfix(infix, post);
-  //printf("Postfix => %s\n", post);
-
-//};
 
 void postfix(char* infix, char* postr) {
 
@@ -48,7 +53,14 @@ void postfix(char* infix, char* postr) {
       infix++;
     };
        while(!empty(&stack)) {
-          *(postr++) = pop(&stack);
+         
+          char x = pop(&stack);
+          if(!isoper(x)) {
+            // more opening brackets than closes
+            printf("Wrong infix formated\n");
+            exit(1);
+          };
+          *(postr++) = x;
        }
        *postr = '\0';
        return;

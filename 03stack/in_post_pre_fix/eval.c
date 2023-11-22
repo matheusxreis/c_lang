@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include"postfix.c"
 
-int main() {
+int main3() {
 
   char* prefix = "3+(7*9)/(9+1)^3";
   char* post = malloc(sizeof(*prefix));
@@ -38,8 +38,8 @@ float eval(char* postfix) {
       if(!underflow1 && !underflow2){
         value = oper(*postfix, number1, number2);
         push_f(&stack, value);
-      }else if(!underflow1 && underflow2) {
-        value = number1;
+      }else if(underflow1 && !underflow2) {
+        value = number2;
         push_f(&stack, value);
       };
       
