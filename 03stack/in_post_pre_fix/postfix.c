@@ -10,6 +10,8 @@
  *  ')' -> Todos tem precedência sobre ele; sempre desempilhará a stack;
  */
 
+
+
 bool isoper(char c) {
   
   return c == '*'
@@ -34,6 +36,7 @@ void postfix(char* infix, char* postr) {
       if(isdigit(*infix)) {
         *(postr++) = *infix;
       }else {
+        *(postr++) = ' '; //divide the numbers
         popandtest(&stack, &topsymb, &underflow);
 
         while(!underflow && prdc(topsymb, *infix)) {

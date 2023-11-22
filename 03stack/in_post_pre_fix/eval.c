@@ -5,17 +5,6 @@
 #include <stdlib.h>
 #include"postfix.c"
 
-int main3() {
-
-  char* prefix = "3+(7*9)/(9+1)^3";
-  char* post = malloc(sizeof(*prefix));
-
-  postfix(prefix, post);
-  float result = eval(post);
-
-  printf("Result => %f\n", result);
-  return 0;
-}
 
 float eval(char* postfix) {
 
@@ -27,11 +16,19 @@ float eval(char* postfix) {
   while(*postfix) {
 
     if(isdigit(*postfix)){
-    
-      push_f(&stack, (float)(*postfix-'0'));
-    
-    }else {
+   
+      float number = (*postfix-'0');
+   
+      while(isdigit(*(++postfix))){
+        number = (int)number*10 + (float)(*postfix)-'0'; // 1*10 + 1 = 11;   
+      };
+
+      push_f(&stack, number);
       
+      (--postfix);
+
+    }else if(*postfix != ' ') {
+
       popandtest_f(&stack,&number2, &underflow2);
       popandtest_f(&stack, &number1, &underflow1);
 
@@ -51,7 +48,7 @@ float eval(char* postfix) {
 
 
 float oper(char op, float number1, float number2) {
-  printf("%.1f %c %.1f\n", number1, op, number2);
+ // printf("%.1f %c %.1f\n", number1, op, number2);
   switch(op) {
     case '+': return number1+number2;
     case '-': return number1-number2;

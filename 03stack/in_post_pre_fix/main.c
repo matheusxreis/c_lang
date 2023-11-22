@@ -8,12 +8,14 @@ int main(){
 
       char* a = malloc(100);
       char* r = malloc(100);
+
       while(fgets(a, 100, stdin)){
           
           a[strcspn(a, "\r\n")] = '\0';
           postfix(a, r);
+
           int result = eval(r);
-          printf("result from %s => %d\n", a, result);
+          printf("result from infix: %s, postfix: %s => %d\n",a, r, result);
       }
 
       free(a);
