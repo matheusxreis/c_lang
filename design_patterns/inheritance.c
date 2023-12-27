@@ -8,42 +8,53 @@
   */
 
 #include<stdio.h>
+#include"inheritance.h"
 
-struct Person {
- int age;
- char* name;
+static const char* attack(void) {
+  return "Attacking";
 };
 
-struct Developer {
-  struct Person base;
-  char* area;
-  char* languagesUsed[10];
-  char* seniority;
+static const char* defense(void) {
+  return "Defensing";
 };
 
-struct Developer buildJrCLangDeveloper(char* name, int age) {
-    
-    struct Person p;
-    p.name = name;
-    p.age = age;
-
-    struct Developer d;
-    d.base = p;
-    d.area = "system";
-    d.languagesUsed[0] = "c language";
-    d.seniority = "jr";
-   
-    return d;
+const char* read_mind(struct Mutant target) {
+  return "Reading mind....";
 };
-
-void printDeveloper(struct Developer d) {
-  printf("Developer %s, with age %d\n",d.base.name, d.base.age);
-  printf("His/her area is %s, with seniority %s and dominate %s\n", d.area, d.seniority, d.languagesUsed[0]);
+const char* regenerate() {
+  return "Regenerating....";
 }
+
+static const struct Mutant mutant[] = {
+  attack,
+  defense,
+  3
+};
+
+static const Telepathic professorX = {
+  mutant,
+  read_mind
+};
+
+static const LongLived wolverine = {
+  mutant,
+  regenerate
+};
 
 int main(){
-  
-  struct Developer dev = buildJrCLangDeveloper("Matheus", 22);
-  printDeveloper(dev);
 
-}
+  const int professorLevel = professorX.base->level;
+  const int wolverineLevel = wolverine.base->level;
+  
+  const char* professorAttack = professorX.base->vtable_.attack();
+  const char* wolverineDefense = wolverine.base->vtable_.defense();
+
+  const char* readingMind = professorX.read_mind(&wolverine.base);
+  const char* regenerating = wolverine.regenerate();
+
+  printf("prof level -> %d, wolv level -> %d\n", professorLevel, wolverineLevel);
+  printf("prof attack -> %s, wolv defense -> %s\n", professorAttack, wolverineDefense);
+  printf("reading mind -> %s\n", readingMind);
+  printf("regenerating -> %s\n", regenerating);
+
+};
