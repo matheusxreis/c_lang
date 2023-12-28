@@ -1,27 +1,40 @@
 #include"postfix.h"
 #include"stack_char.c"
 #include<ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<assert.h>
 
-/*
- * '(' -> Não tem precedência sobre ninguém e ninguém tem sobre ele; quando comparado nunca desempilhará a stack;
- *  ')' -> Todos tem precedência sobre ele; sempre desempilhará a stack;
- */
-
-
-
-bool isoper(char c) {
+#ifndef MAIN_EXIST
   
-  return c == '*'
-    || c == '+'
-    || c == '-'
-    || c == '/'
-    || c == '^';
-    //|| c == '(';
-};
+int main(){
+      char* a = malloc(100);
+      char* r = malloc(100);
+      
+      #ifdef TEST 
+        postfix_test();
+      #endif
+          
+      #ifndef TEST
 
+      while(fgets(a, 100, stdin)){
+          a[strcspn(a, "\r\n")] = '\0';
+          postfix(a, r);
+          printf("result from infix: %s, postfix: %s \n",a, r);
+      }
+      free(a);
+      free(r);
+
+     #endif
+  }
+
+#endif
+
+
+void postfix_test() {
+  // make test  
+};
 
 
 void postfix(char* infix, char* postr) {
@@ -33,44 +46,55 @@ void postfix(char* infix, char* postr) {
 
   //reading string // that's is like (base + 0 * esize = base + 0 = first address of array) 
   while(*infix) {
-      if(isdigit(*infix)) {
+
+      if(isdigit(*infix) || isalpha(*infix)) {
+        // if operand
+
         *(postr++) = *infix;
-      }else {
-        *(postr++) = ' '; //divide the numbers
+
+      } else if(*infix == '('){
+      
+        push(&stack, *infix);
+      
+      } else if(*infix == ')'){
+       
         popandtest(&stack, &topsymb, &underflow);
 
-        while(!underflow && prdc(topsymb, *infix)) {
-            *(postr++) = topsymb;
-            popandtest(&stack, &topsymb, &underflow);
-        };
+        while(!underflow && topsymb != '('){
+          *(postr++) = topsymb;
+          popandtest(&stack, &topsymb, &underflow);
+        }
+        topsymb = ' '; // removing '(' from topsymb
 
-        if(!underflow) {
+      } else {
+        // if operator
+        *(postr++) = ' ';
+        
+        popandtest(&stack, &topsymb, &underflow);
+
+        while(!underflow &&
+             (prdc_value(*infix) < prdc_value(topsymb)
+             || prdc_value(*infix) == prdc_value(topsymb))
+            ){
+          *(postr++) = topsymb;
+          popandtest(&stack, &topsymb, &underflow);
+        };
+     
+        if(prdc_value(*infix) > prdc_value(topsymb)) {
           push(&stack, topsymb);
-        };
-        if(underflow || *infix != ')') {
-          push(&stack, *infix);
-        } else {
-          topsymb = pop(&stack);
-        };
-      };
+        }
+        push(&stack, *infix);
+        }
       infix++;
     };
-       while(!empty(&stack)) {
-         
-          char x = pop(&stack);
-          if(!isoper(x)) {
-            // more opening brackets than closes
-            printf("Wrong infix formated\n");
-            exit(1);
-          };
-          *(postr++) = x;
-       }
-       *postr = '\0';
-       return;
+      while(!empty(&stack)){
+        *(postr++) = pop(&stack);
+      };
+
+      *postr = '\0';
 };
 
-
-int prdc_order(char symb) {
+int prdc_value (char symb) {
   switch(symb) {
     case '+': case '-': return 1;
     case '*': case '/': return 2;
@@ -79,20 +103,3 @@ int prdc_order(char symb) {
   }
 };
 
-bool prdc(char topsymb, char symb){
-  /*
-   * *>+ (2>1) TRUE
-   * +>* (1>2) FALSE
-   */
-  if(symb == '(' || topsymb == '(') {
-    return false;
-  };
-  if(symb == ')') {
-    return true;
-  }
-  if(topsymb == ')'){
-    printf("Operation undefined");
-    exit(1);
-  }
-  return prdc_order(topsymb) > prdc_order(symb);
-};
