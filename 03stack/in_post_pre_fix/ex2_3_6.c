@@ -5,9 +5,11 @@
 #include <stdlib.h>
 #include"eval.h"
 #include"stack_float.c"
+
+#ifndef MAIN_EXIST
+#define MAIN_EXIST
+
 #include"postfix.c"
-
-
 
 int main(){
 
@@ -24,6 +26,8 @@ int main(){
       free(a);
       return 0;
 };
+
+#endif
 
 int prcd2(char op) {
     switch (op)  {
@@ -55,7 +59,7 @@ float eval(char* infix) {
 
     push(&stack_operator, *infix);
 
-  }else if(*infix == ')') {
+  } else if(*infix == ')') {
 
     // case closing parenthesis, must execute all inside it
     float number1, number2;
@@ -73,7 +77,13 @@ float eval(char* infix) {
       //break;
     };
 
-  }else if(isoper(*infix)) {
+  } else if(isdigit(*infix)){
+  // case operand
+      // add in operand stack
+    push_f(&stack_operand, *infix - '0');
+
+
+  } else {
 
     // case operator
     // if a operand
@@ -99,12 +109,7 @@ float eval(char* infix) {
 
     if(prcd2(c) < current && !und) { push(&stack_operator, c); }
     push(&stack_operator, *infix);
-  }else {
-      // case operand
-      // add in operand stack
-    push_f(&stack_operand, *infix - '0');
-
-  };
+  }
 
     infix++;
   }
