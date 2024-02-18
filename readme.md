@@ -18,6 +18,7 @@ Currently the repository is still in progress.
 - [Infix expression to postfix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/postfix.c)
 - [Evaluating postfix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/eval.c)
 - [Evaluating infix expression directly using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_6.c)
+- [Infix expression to prefix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_7.c)
 - [Inheritance using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/inheritance.c)
 - [Polymorphism using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/polymorphism.c)
 
