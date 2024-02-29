@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<ctype.h>
 #include<stdlib.h>
+#include<string.h>
 
 int main() {
 
@@ -13,9 +14,9 @@ int main() {
       currentPos = 0;
 
       if(expr(str, length, &currentPos) == TRUE && currentPos >= length){
-        printf("%s => valid", str);
+        printf("%s => valid\n", str);
       }else {
-        printf("%s => invalid", str);
+        printf("%s => invalid\n", str);
       }
 
     return 1;
@@ -25,13 +26,16 @@ char getsymb(char* str, int length, int* currentPos){
   
   char c;
 
+
   if(*currentPos < length) {
     c = str[*currentPos];
   }else {
     c = ' ';
-    
-    (*currentPos)++;
+   
   }
+
+   (*currentPos)++;
+    
   return c;
 
 }
@@ -39,14 +43,9 @@ char getsymb(char* str, int length, int* currentPos){
 void readstr(char* str, int* length) {
 
       fgets(str, MAXSTRINGSIZE, stdin);
-      
-      int count = 0;
-      while(*str !='\0') {
-        count++;
-        str++;
-      }
-      //count;
-      *length = count - 1; //removing /r
+      *length =  strlen(str) - 1; ///
+      str[*length] = '\0';
+
 };
 
 int expr(char* str, int length,int* currentPos){
