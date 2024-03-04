@@ -12,6 +12,11 @@ Currently the repository is still in progress.
 - [Rational numbers implementation using Structs](https://github.com/matheusxreis/c_lang/blob/main/02structs_unions/rational.c)
 - [Complex numbers implementation using Structs](https://github.com/matheusxreis/c_lang/blob/main/02structs_unions/ex1_3_1.c)
 - [Fixed-points implementation using Structs](https://github.com/matheusxreis/c_lang/blob/main/02structs_unions/ex1_3_2.c)
+- [Inheritance using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/inheritance.c)
+- [Polymorphism using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/polymorphism.c)
+
+#### Stack: 
+
 - [Stack implementation in C](https://github.com/matheusxreis/c_lang/blob/main/03stack/stack.c)
 - [Array implementation using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/ex2_2_6.c)
 - [Double Stack implementation in C](https://github.com/matheusxreis/c_lang/blob/main/03stack/ex2_2_7.c)
@@ -19,9 +24,15 @@ Currently the repository is still in progress.
 - [Evaluating postfix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/eval.c)
 - [Evaluating infix expression directly using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_6.c)
 - [Infix expression to prefix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_7.c)
-- [Inheritance using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/inheritance.c)
-- [Polymorphism using C](https://github.com/matheusxreis/c_lang/blob/main/design_patterns/polymorphism.c)
 
+### Recursion:
+
+- [Sum, product, average](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_3.c)
+- [Factorial](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
+- [Binary Search](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
+- [Validating Algebraic Expression](https://github.com/matheusxreis/c_lang/blob/main/04recursion/algebraic_expression.c)
+- [Greatest Commom Divisor](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_2.c)
+- [Combination using Recursion(Cnk)](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_3.c)
 
 ### References 
 
