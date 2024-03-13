@@ -28,11 +28,13 @@ Currently the repository is still in progress.
 ### Recursion:
 
 - [Sum, product, average](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_3.c)
-- [Factorial](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
-- [Binary Search](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
+- [Factorial, fibonacci](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
+- [Binary Search](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_5.c)
 - [Validating Algebraic Expression](https://github.com/matheusxreis/c_lang/blob/main/04recursion/algebraic_expression.c)
 - [Greatest Commom Divisor](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_2.c)
 - [Combination using Recursion(Cnk)](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_3.c)
+- [Generalized Fibonacci Sequence](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_4.c)
+
 
 ### References 
 
