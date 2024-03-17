@@ -3,7 +3,7 @@
 #include<ctype.h>
 #include"prefix_to_postfix.h"
 #include<stdlib.h>
-
+#include"ex3_3_4.c"
 
 
 
@@ -51,9 +51,10 @@ void convert(char* prefix, char* postfix) {
 
   /* finding first and second operands */
   substring(temp, prefix, 1, length-1); // getting substring
-  m = find(temp);
+  m = find_iterative(temp);
+  printf("m => %d\n", m);
   substring(temp, prefix, m+1, length-m-1);
-  n = find(temp);
+  n = find_iterative(temp);
 
   if(is_operator(op[0]) == 0 || m == 0 || n == 0 || (m+n+1) != length){
     printf("\n String prefix invalid 2\n");
