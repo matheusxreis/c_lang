@@ -25,7 +25,7 @@ Currently the repository is still in progress.
 - [Evaluating infix expression directly using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_6.c)
 - [Infix expression to prefix expression using Stack](https://github.com/matheusxreis/c_lang/blob/main/03stack/in_post_pre_fix/ex2_3_7.c)
 
-### Recursion:
+#### Recursion:
 
 - [Sum, product, average](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_3.c)
 - [Factorial, fibonacci](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_1_4.c)
@@ -34,6 +34,12 @@ Currently the repository is still in progress.
 - [Greatest Commom Divisor](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_2.c)
 - [Combination using Recursion(Cnk)](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_3.c)
 - [Generalized Fibonacci Sequence](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_4.c)
+- [Merge Sort](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_2_7.c)
+- [Tower Of Hanoi using Recursion](https://github.com/matheusxreis/c_lang/blob/main/04recursion/tower_of_hanoi.c)
+- [Prefix expression to postfix expression using Recursion](https://github.com/matheusxreis/c_lang/blob/main/04recursion/prefix_to_postfix.c)
+- [Evaluating prefix expression using Recursion](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_3_5.c)
+- [Quick Sort](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_3_9.c)
+- [N Queen Problem using Backtracking](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_3_10.c)
 
 
 ### References 

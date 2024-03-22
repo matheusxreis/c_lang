@@ -1,7 +1,7 @@
 // N queens problem
 #include<stdio.h>
 
-#define N 4
+#define N 5
 
 static int board[N][N];
 
@@ -36,10 +36,10 @@ int try(int row) {
   int col;
   for(col = 0; col < N; col++){
     board[row][col] = TRUE;
-    if(row == 7 && is_safe() == TRUE){
+    if(row == N-1 && is_safe() == TRUE){
       return TRUE;
     }
-    if(row < 7 && is_safe() == TRUE && try(row+1) == TRUE){
+    if(row < N-1 && is_safe() == TRUE && try(row+1) == TRUE){
       return TRUE;
     }
     board[row][col] = FALSE;
