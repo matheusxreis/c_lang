@@ -1,7 +1,7 @@
 //// 
 
 #include<stdio.h>
-
+#include"../03stack/in_post_pre_fix/stack_char.c"
 
 #define N 10
 #define TRUE 1
@@ -9,39 +9,85 @@
 
 enum MOVES {
   DOWN,
-  RIGHT,
-  UP, 
-  LEFT
+  RIGHT, 
+  LEFT,
+  UP 
 };
 
+
 void drawmaze();
+void drawmoves();
 
 int move(enum MOVES m, int r, int c);
 char read_move(enum MOVES m);
+/*
+static int maze[N][N] = {
+  {0, 0, 1, 1},
+  {1, 0, 0, 1},
+  {1, 1, 0, 0},
+  {1, 1, 1, 0}
+};
+*/
 
-
-
-static int maze[N][N] =  {
+/*
+static int maze[N][N] =   {
     {0, 1, 1, 0, 1, 0, 0, 1, 0, 1},
     {0, 0, 1, 0, 1, 0, 0, 0, 1, 1},
     {0, 0, 0, 0, 1, 0, 1, 0, 1, 0},
-    {1, 1, 0, 0, 0, 0, 1, 0, 0, 1},
-    {1, 0, 1, 1, 0, 1, 0, 1, 0, 1},
-    {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-    {1, 1, 0, 0, 1, 1, 1, 1, 1, 1},
-    {1, 1, 0, 0, 0, 0, 0, 1, 0, 1}, 
-    {1, 1, 1, 0, 1, 1, 0, 0, 0, 0},
-    {1, 1, 0, 0, 0, 0, 0, 1, 1, 0}
+    {0, 1, 0, 0, 0, 0, 1, 0, 0, 1},
+    {0, 0, 1, 1, 0, 1, 0, 1, 0, 1},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+    {0, 1, 0, 0, 1, 1, 1, 1, 1, 1},
+    {0, 1, 0, 0, 0, 0, 0, 1, 0, 1}, 
+    {0, 1, 1, 0, 1, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 };
+*/
 
+static int maze[N][N] =  {
+    {0, 0, 0, 0, 1, 0, 0, 1, 0, 1}, //0
+    {1, 1, 0, 1, 1, 0, 0, 0, 1, 1}, //1
+    {0, 0, 0, 0, 1, 0, 1, 0, 1, 0}, //2
+    {1, 1, 1, 0, 1, 0, 0, 0, 0, 1}, //3
+    {1, 0, 1, 0, 0, 0, 0, 0, 0, 1}, //4
+    {1, 0, 1, 1, 0, 0, 1, 1, 0, 1}, //5
+    {1, 1, 0, 0, 1, 0, 1, 1, 1, 1}, //6
+    {1, 1, 0, 0, 0, 0, 0, 1, 0, 1}, //7
+    {1, 1, 1, 0, 1, 0, 0, 0, 0, 0}, //8
+    {1, 1, 0, 0, 0, 0, 0, 1, 1, 0}  //9
+};// 0  1  2  3  4  5  6  7  8  9
+
+/*
+static int maze[N][N] =  {
+    {0, 1, 1, 0, 1, 0, 0, 1, 0, 1}, //0
+    {0, 0, 1, 0, 1, 0, 0, 0, 1, 1}, //1
+    {0, 0, 0, 0, 1, 0, 1, 0, 1, 0}, //2
+    {1, 1, 0, 0, 0, 0, 1, 0, 0, 1}, //3
+    {1, 0, 1, 1, 0, 1, 0, 1, 0, 1}, //4
+    {1, 0, 1, 0, 0, 0, 0, 1, 0, 1}, //5
+    {1, 1, 0, 0, 1, 1, 1, 1, 1, 1}, //6
+    {1, 1, 0, 0, 0, 0, 0, 1, 0, 1}, //7
+    {1, 1, 1, 0, 1, 1, 0, 0, 0, 0}, //8
+    {1, 1, 0, 0, 0, 0, 0, 1, 1, 0}  //9
+};// 0  1  2  3  4  5  6  7  8  9
+*/
+
+static struct Stack stack;
 
 int try(int row, int col);
 
 int main() {
+    
+    create(stack);
 
 
-    if(try(0, 0)) {
-      drawmaze();
+    drawmaze();
+
+    if(try(0, 0) == TRUE) {
+      printf("The solution is:\n");
+      drawmoves();
+    }else {
+      printf("There is no solution\n");
     };
 
   
@@ -52,23 +98,22 @@ int main() {
 
 int try(int row, int col) {
   
-  
-  enum MOVES m = DOWN;
+  enum MOVES m;
   
   if(maze[row][col] == 1) {
     return FALSE;
   }
 
+  // marking what I passed
+  maze[row][col] = 1;
+
   for(int i = 0; i<4; i++) {
     m = i;
-    
     if(row == N-1 && col == N-1) {
-
-      printf("move: %c\n", read_move(m));
       return TRUE;
     }
     if(move(m, row, col) == TRUE) {
-      printf("move: %c\n", read_move(m));
+      push(&stack, read_move(m)); // only to print 
       return TRUE;
     }
   }
@@ -84,28 +129,31 @@ int move(enum MOVES m, int r, int c) {
   int col = c;
 
 
-  printf("move => %c, from [%d][%d]\n", read_move(m), r, c);
   switch(m) {
     case DOWN:
       if(row+1>N-1) {
         return FALSE;
       }
       row+=1;
+      break;
     case UP:
       if(row-1<0) {
         return FALSE;
       }
       row-=1;
+      break;
     case LEFT:
-      if (row-1<0){
+      if (col-1<0){
         return FALSE;
       }
       col -=1;
+      break;
     case RIGHT:
-      if (row+1>N-1){
+      if (col+1>N-1){
         return FALSE;
       }
       col +=1;
+      break;
   }
   return try(row, col);
 }
@@ -127,16 +175,19 @@ void drawmaze(){
   for(int row = 0; row < N; row ++){
     for(int col = 0; col < N; col++){
       if(maze[row][col] == 1) { 
-          printf(" . ");
-      }else {
           printf(" x ");
+      }else {
+          printf(" . ");
       }
     }
     printf("\n");
   }  
 }
 
-int is_good(int row, int col) {
-    return row == FALSE && col == FALSE;
+void drawmoves() {
+ 
+  while(!empty(&stack)) {
+      printf("move:  %c\n", pop(&stack));
+  }
 }
 
