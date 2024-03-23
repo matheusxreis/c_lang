@@ -14,3 +14,5 @@ void create(struct Stack *stack);
 
 
 int factorial(int n);
+int factorial2(int n);
+int factorial3(int n);
