@@ -1,22 +1,14 @@
 #define MAXSTACK 50
-
-struct dataarea {
-
-  int param; 
-  int x;
-  long int y;
-  short int retaddr;
-
-};
+#define FALSE 0
+#define TRUE 1
 
 struct Stack {
   int top;
-  struct dataarea item[MAXSTACK];
+  int items[MAXSTACK];
 };
 
-void push(struct Stack *stack, struct dataarea *data);
-
-void popsub(struct Stack *stack, struct dataarea *data);
+void push(struct Stack *stack, int param);
+void popandtest(struct Stack *stack, int *param, int *underflow);
 
 void create(struct Stack *stack);
 
