@@ -4,7 +4,10 @@
 #define STACKSIZE 100
 #define INITIAL_TOP_VALUE -1
 
-typedef void* eltype;
+#ifndef ELTYPE
+  // using this to define eltype according with needed
+  typedef void* eltype;
+#endif
 
 /*
  * Stack representation using struct and array;
