@@ -2,6 +2,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+Queue create() {
+  Queue q;
+  q.front = q.rear = MAXQUEUE-1;
+  return q;
+}
 void enqueue(Queue *pq, eltype item){
 
   if(pq->rear == MAXQUEUE-1) {
@@ -24,6 +30,7 @@ void enqueue(Queue *pq, eltype item){
      * OVERFLOW
      */
     printf("Queue overflow occurs\n");
+    pq->rear--;    
     exit(1);
   }
 

@@ -11,7 +11,7 @@
   #define FALSE 0 
 #endif
 
-#define MAXQUEUE 50
+#define MAXQUEUE 5
 
 
 /* A Queue is a FIFO (first in first out) data structure. 
