@@ -1,33 +1,42 @@
 
+
 #include <stdio.h>
 #define ELTYPE
 typedef int eltype;
-#include "queue.c"
-
+//#include "queue.c"
+#include "pqueue.c"
 
 
 
 int main() {
 
 
-  Queue q;
-  q.rear = q.front = MAXQUEUE -1;
+  PQueue q = create();
   
 
   int x, und;
-  enqueue(&q, 55);
-  enqueue(&q, 66);
-  enqueue(&q, 77);
-  enqueue(&q, 88);
+  penqueue(&q, 98);
+  penqueue(&q, 12);
+  penqueue(&q, 140);
+  penqueue(&q, 10000);
+  penqueue(&q, -20);
 
-  printf("dequeue => %d\n", dequeue(&q));
-  deqandtest(&q, &x, &und);
-  printf("deqandtest => %d\n", x);
-  //printf("dequeue => %d\n", dequeue(&q));
-  deqandtest(&q, &x, &und);
-  printf("deqandtest => %d\n", x);
+  //penqueue(&q, 30);
+
+  printf("dequeue => %d\n", pdequeue(&q));
+  //deqandtest(&q, &x, &und);
+  //printf("deqandtest => %d\n", x);
+  printf("dequeue => %d\n", pdequeue(&q));
+
+  printf("dequeue => %d\n", pdequeue(&q));
+  printf("dequeue => %d\n", pdequeue(&q));
+  printf("dequeue => %d\n", pdequeue(&q));
+
+  printf("dequeue => %d\n", pdequeue(&q));
+  //deqandtest(&q, &x, &und);
+  //printf("deqandtest => %d\n", x);
   /* underflow
-  printf("dequeue => %d\n", dequeue(&q));
+   printf("dequeue => %d\n", dequeue(&q));
   
   deqandtest(&q, &x, &und);
   if(und == TRUE){
@@ -35,10 +44,7 @@ int main() {
   }
   */
 
-  int emp = empty(&q);
-  if(emp == TRUE){
-    printf("Queue is empty\n");
-  }
+  
 
 
 }
