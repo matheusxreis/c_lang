@@ -14,15 +14,15 @@ void print_list(node** list){
   int type = (*list)->utype;
 
   if(type == INT) {
-    printf("list => %d\n", (*list)->info.intInfo);
+    printf(" %d ", (*list)->info.intInfo);
   }else if (type == STRING) {
-    printf("list => %s\n", (*list)->info.strInfo);
+    printf(" %s ", (*list)->info.strInfo);
   }else if (type == CHAR){
-     printf("list => %c\n", (*list)->info.charInfo);
+     printf(" %c ", (*list)->info.charInfo);
   }else {
-    printf("(\n");
+    printf(" ( ");
     print_list(&(*list)->info.listInfo);
-    printf(")\n");
+    printf(" ) ");
   }
 
   node* rest = tail(*list);
@@ -32,83 +32,62 @@ void print_list(node** list){
 
 int main() {
 
-  node* list = create();
-
-
+  node* list1 = create();
   infotype x;
+
   x.info.intInfo = 5;
   x.utype = INT;
+  push(&list1, x);
 
-  push(&list, x);
-  x.info.intInfo = 10;
-  push(&list, x);
-
-  x.info.intInfo = 333;
-  push(&list, x);
-  printf("type => %d\n",nodetype(first(list))); // 1 INT
+  x.info.intInfo = 16;
+  push(&list1, x);
  
-  print_list(&list); // 333 10 5
+  x.info.intInfo = 60;
+  push(&list1, x);
 
-  infotype result;
-  head(list, &result); // 333
-  info(*tail((tail(list))), &result); //5
-                                      
-  printf("x -> %d\n", result.info.intInfo);
-  result.info.intInfo = next(first(list)).info.intInfo; //10
-  printf("x -> %d\n", result.info.intInfo);
-  result.info.intInfo = first(list).info.intInfo;
-  printf("x -> %d\n", result.info.intInfo); //333
-  printf("x -> %d\n", next(first(tail(list))).info.intInfo); //5
+  x.info.intInfo = 300;
+  push(&list1, x);
 
-  x.info.strInfo = "Matheus Reis";
-  x.utype = STRING;
-  push(&list, x);
+  // list 1 -> (300, 60, 16, 5)
 
+  node* list2 = copy(tail(list1));
+  x.info.intInfo = 13;
+  node* list3 = addon(list2, x);
 
-  x.info.strInfo = "Emilye Motta";
-  x.utype = STRING;
-  push(&list, x);
+  //list2 -> (60, 16, 5);
+ // list3 -> (13, 60, 16, 5)
+  printf("List 1 ->\n");
+  print_list(&list1);
 
-  x.info.charInfo = 'D';
-  x.utype = CHAR;
-  push(&list, x);
+  printf("\nList 2 ->\n");
+  print_list(&list2);
 
-  x.info.strInfo = "WOW";
-  x.utype = STRING;
-  push(&list, x);
+  x.info.intInfo = 149;
+  set(&list1, 3, x);
 
-  print_list(&list); // "WOW" 'D' "Emilye Motta" "Matheus Reis" 333 10 5//
-                  
-  printf("type => %d\n",nodetype(first(list))); // 4 STRING
-  printf("type => %d\n",nodetype(first(tail(list)))); // 2 CHAR
-
-  node* list2 = create();
-  node* list3 = create();
+  printf("\nList 1 (dps) ->\n");
+  print_list(&list1);
 
 
-  printf("\n\n=====================================\n\n");
-  x.utype = STRING;
-  x.info.strInfo = "INSIDE LIST 2";
-  push(&list2, x);
-
-  x.info.strInfo = "LIST 3 NOW";
-  push(&list3, x);
-
-  x.utype = INT;
-  x.info.intInfo = 222;
-  push(&list2, x);
-
-  x.utype = LIST;
+  printf("\nList 2 (dps) ->\n");
+  print_list(&list2);
 
 
-  x.info.listInfo = list3;
-  push(&list2, x);
+  printf("\nList 3 ->\n");
+  print_list(&list3);
 
-  x.info.listInfo = list2;
+  x.info.intInfo = 1997;
 
-  push(&list, x);
-  print_list(&list);
+  set(&list2, 0 ,x);
+
+  printf("\nList 3 (dps) ->\n");
+  print_list(&list3);
 
 
+
+
+  // list3 -> (13, 60, 1997, 16, 5)
+
+  printf("\n");
 
 }

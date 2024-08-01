@@ -5,11 +5,6 @@
 #define LIST 3
 #define STRING 4
 
-
-
-
-
-
 typedef struct {
   int utype;
   union { 
@@ -43,6 +38,12 @@ typedef struct nodetype {
  * Create the list
  */
 node* create();
+
+/*
+ * @brief Copy a list
+ * @param list The list to be copied
+ */
+node* copy(node* list);
 
 /* OPERATIONS WHAT DOESNT MODIFY A LIST */
 /*
@@ -92,4 +93,18 @@ int nodetype(node element);
  * */
 void push(node** list, infotype x);
 
+/*
+ * @brief Set a new info to index position from the list
+ * @param list The list element which apply the function
+ * @param index The index where the info must be inserted
+ * @param info The element to be inserted
+ */
+void set(node** list, int index, infotype info);
 
+
+/*
+ * @brief Returns a new list which x as head and list as tail
+ * @param list The list element which apply the function
+ * @param x The element to be inserted as head
+ * */
+node* addon(node* list, infotype x);
