@@ -19,7 +19,7 @@ void print_list(node** list){
     printf(" %s ", (*list)->info.strInfo);
   }else if (type == CHAR){
      printf(" %c ", (*list)->info.charInfo);
-  }else {
+}else if(type == LIST) {
     printf(" ( ");
     print_list(&(*list)->info.listInfo);
     printf(" ) ");
@@ -33,61 +33,48 @@ void print_list(node** list){
 int main() {
 
   node* list1 = create();
-  infotype x;
+  infotype x, y, z, m;
 
   x.info.intInfo = 5;
   x.utype = INT;
-  push(&list1, x);
 
-  x.info.intInfo = 16;
-  push(&list1, x);
+  y.info.strInfo = "By Matheus Reis";
+  y.utype = STRING;
+
+  z.info.listInfo = create();
+  z.utype = LIST;
+
+  m.info.charInfo = 'O';
+  m.utype = CHAR;
+
+  node* list2 = createlist(4, &x, &y, &z, &m);
+  print_list(&list2);
+  printf("\n");
+
+  m.info.charInfo = 'P';
+  x.info.intInfo = 44;
+  insert(&list1, m);
+  insert(&list1, x);
+
+  print_list(&list1);
+  printf("\n");
+
+  node* list3 = concat(list2, list1);
+
+
+
+  print_list(&list3);
+  printf("\n");
+
+  reverse(&list3);
+
+  print_list(&list3);
  
-  x.info.intInfo = 60;
-  push(&list1, x);
-
-  x.info.intInfo = 300;
-  push(&list1, x);
-
-  // list 1 -> (300, 60, 16, 5)
-
-  node* list2 = copy(tail(list1));
-  x.info.intInfo = 13;
-  node* list3 = addon(list2, x);
-
-  //list2 -> (60, 16, 5);
- // list3 -> (13, 60, 16, 5)
-  printf("List 1 ->\n");
-  print_list(&list1);
-
-  printf("\nList 2 ->\n");
-  print_list(&list2);
-
-  x.info.intInfo = 149;
-  set(&list1, 3, x);
-
-  printf("\nList 1 (dps) ->\n");
-  print_list(&list1);
-
-
-  printf("\nList 2 (dps) ->\n");
-  print_list(&list2);
-
-
-  printf("\nList 3 ->\n");
+  printf("\n"); 
+  remov(&list3, 4);
   print_list(&list3);
-
-  x.info.intInfo = 1997;
-
-  set(&list2, 0 ,x);
-
-  printf("\nList 3 (dps) ->\n");
-  print_list(&list3);
-
-
-
-
-  // list3 -> (13, 60, 1997, 16, 5)
 
   printf("\n");
 
 }
+

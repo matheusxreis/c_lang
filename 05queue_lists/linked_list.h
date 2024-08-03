@@ -39,6 +39,7 @@ typedef struct nodetype {
  */
 node* create();
 
+node* createlist(int size, ...);
 /*
  * @brief Copy a list
  * @param list The list to be copied
@@ -84,6 +85,19 @@ void info(node element, infotype *x);
 int nodetype(node element);
 
 
+/* @brief Returns the size from the list
+ * @param list The list which apply the function
+ */
+int len(node* list);
+
+/* @brief Concatenate 2 list and return it
+ * @param l1 The first list which apply the function
+ * @param l2 The second list which apply the function
+ 
+*/
+node* concat(node* l1, node* l2);
+
+
 /* Operations which modify a list */
 
 /*
@@ -108,3 +122,24 @@ void set(node** list, int index, infotype info);
  * @param x The element to be inserted as head
  * */
 node* addon(node* list, infotype x);
+
+/*
+ * @brief Inserts a element from end of the list
+ * @param list The list element which apply the function
+ * @param x The element to be inserted
+ * */
+void insert(node** list, infotype x);
+
+/*
+ * @brief Remove a element from end of the list
+ * @param list The list element which apply the function
+ * @param index The element index to be removed
+ * */
+void remov(node** list, int index);
+/*
+ * @brief Revert a list
+ * @param list The list element which apply the function
+*/ 
+void reverse(node** list); 
+
+

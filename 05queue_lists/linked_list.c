@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdarg.h>
+#include <stdlib.h>
 #include"linked_list.h"
 
 
@@ -26,6 +28,20 @@ void set_info(infotype* t1, infotype* t2){
 node* create() { 
   node* n = (node*)malloc(sizeof(node)); 
   n = NULL;
+  return n;
+}
+
+node* createlist(int size, ...) {
+
+  va_list argptr;
+  va_start(argptr, size); 
+
+  node* n = create();
+ 
+  for(int i = 0; i<size; i++) { 
+    insert(&n, *va_arg(argptr, infotype*));
+  }
+  va_end(argptr);  
   return n;
 }
 
@@ -77,7 +93,7 @@ void head(node *list, infotype *x) {
 node* tail(node* list){
   if(list == NULL) {
     printf("The list is empty (tail method)\n");
-    return NULL;
+    return list;
   }
   return (list->next);
 }
@@ -86,6 +102,49 @@ int nodetype(node element) {
   return element.utype;
 }
 
+// ex. 4.2.24n
+int len(node* list) {
+
+  if(list == NULL) {
+    return 0;
+  }
+
+  return 1 + len(tail(list));
+}
+
+
+node* reverse_with_head(node* tail, node* head) {
+
+   if(head == NULL) {
+    return tail;
+  }
+   
+   node* list = head->next;
+   head->next = tail;
+
+   return reverse_with_head(head, list);
+}
+// ex 4.2.3d
+void reverse(node** list) {
+  *list = reverse_with_head(NULL, *list);
+}
+// ec 4.2.3b
+node* concat(node* l1, node* l2) {
+ 
+  if(l1 == NULL && l2 == NULL) {
+    return NULL;
+  }
+  
+  if(l1 == NULL) {
+   l1 = l2;
+   return l1;
+  }
+  
+  l1->next = concat(l1->next, l2);
+    
+  return l1;
+
+}
 
 void push(node** list, infotype x) { 
   
@@ -113,16 +172,11 @@ void set(node** list, int index, infotype info) {
     printf("Index out of bounds (set)\n");
     exit(1);
   }
-   if(index==0) {
+   if(index<1) {
     set_info((infotype*)*list, &info);
     return;
-  }
-  node* rest = tail(*list);
-  if(rest == NULL) {
-    printf("Index out of bounds (set)\n");
-    exit(1);
-  }
-  set(&rest, index - 1,info); 
+  } 
+  set(&(*list)->next, index - 1,info); 
 }
 
 node* addon(node* list, infotype x) { 
@@ -132,4 +186,33 @@ node* addon(node* list, infotype x) {
   n->next = list;
   return n;
 }
+
+
+// ex 4.2.3a
+void insert(node** list, infotype x) { 
+
+  if(*list == NULL) {
+    push(list, x);
+    return;  
+  }
+
+  insert(&(*list)->next, x);
+}
+/* TODO: handle with segment fault and 
+ * refactor set method too
+ * */
+void remov(node**list, int index) {
+
+ if(list == NULL) {
+    printf("Index out of bounds (set)\n");
+    exit(1);
+  }
+  if(index < 1) {
+    *list = (*list)->next;
+    return;
+  };
+
+  remov(&(*list)->next, index-1);
+};
+
 
