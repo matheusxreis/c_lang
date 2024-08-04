@@ -25,6 +25,26 @@ void set_info(infotype* t1, infotype* t2){
   }
 }
 
+int compareinfo(infotype* t1, infotype* t2){
+ 
+  switch(t2->utype) {
+    case INT:
+      return t1->info.intInfo == t2->info.intInfo;
+      break;
+    case CHAR:
+      return t1->info.charInfo == t2->info.charInfo;
+      break;
+    case LIST:
+      return t1->info.listInfo == t2->info.listInfo;
+      break;
+    case STRING:
+      return  t1->info.strInfo == t2->info.strInfo;
+      break;
+  };
+
+  return 0;
+}
+
 node* create() { 
   node* n = (node*)malloc(sizeof(node)); 
   n = NULL;
@@ -113,6 +133,45 @@ int len(node* list) {
 }
 
 
+node* filterlist(node* list, node* result, infotype elem) {
+  if(list == NULL) {
+    
+    if(!compareinfo((infotype*)result, &elem)) {
+      return NULL;
+    }
+    return result;
+  }
+
+  if(compareinfo((infotype*)list, &elem)) {
+    result = list;
+    result->next = filterlist(list->next, result->next, elem);
+    return result;
+  }
+
+  return filterlist(list->next, result, elem);  
+}
+
+node* filter(node* l1, infotype elem) {
+  node* n = (node*)malloc(sizeof(node));
+  //TODO: try filter without copy
+  return filterlist(copy(l1), n, elem);
+};
+
+node* find(node* l1, infotype elem) {
+
+  if(l1 == NULL) {
+    return l1;
+  }
+
+  if(compareinfo((infotype*)l1, &elem)) {
+    return l1;
+  }
+
+  return find(l1->next, elem);
+}
+
+
+//========================
 node* reverse_with_head(node* tail, node* head) {
 
    if(head == NULL) {

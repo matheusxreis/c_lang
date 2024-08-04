@@ -2,27 +2,69 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include"pqueue_w_list.c"
+#include"linked_list.c"
 
 int main() {
 
-  PQueue q = create();
+ 
+  node* list = create();
 
-  penqueue(&q, 21);
-  penqueue(&q, -1);
-  penqueue(&q, 40);
-  penqueue(&q, 20);
-  penqueue(&q, 277);
-  penqueue(&q, 10);
-  penqueue(&q, 4);
-  penqueue(&q, 21);
-  penqueue(&q, 1000);
-  penqueue(&q, 0);
+  infotype x;
+  x.info.intInfo = 1;
+  x.utype = INT;
+  insert(&list, x);
 
+  x.info.intInfo = 1;
+  insert(&list, x);
+   
+  x.info.intInfo = 1;
+  insert(&list, x);
 
-  for(int i = 0; i<10; i++) {
-    printf("%d\n", pdequeue(&q));
-  }
-  
+  x.info.intInfo = 1;
+  insert(&list, x);
+ 
+  x.info.intInfo = 50;
+  insert(&list, x);
+
+  x.info.intInfo = 1;
+  insert(&list, x);
+
+  x.info.intInfo = 50;
+  insert(&list, x);
+
+  x.info.intInfo = 1;
+  insert(&list, x);  
+
+  print_list(&list);
+  printf("\n");
+
+  infotype elem;
+  elem.utype = INT;
+  elem.info.intInfo = 50;
+
+  node* list2 = filter(list, elem);
+
+  print_list(&list2);
+  printf("\n");
+
+  set(&list2, 1, x);
+
+  print_list(&list2);
+  printf("\n");
+
+  x.info.intInfo = 50;
+
+  node* searched = find(list, x);
+
+  print_list(&searched);
+  printf("\n");
+
+  x.info.intInfo = 99;
+
+  set(&searched, 0, x);
+
+  print_list(&searched);
+  printf("\n");
+
 
 }

@@ -97,8 +97,19 @@ int len(node* list);
 */
 node* concat(node* l1, node* l2);
 
+/* @brief Filter a element and returns a list with them
+ * @param l1 The list which apply the function
+ * @param elem The element which search 
+*/
+node* filter(node* l1, infotype elem);
 
-/* Operations which modify a list */
+/* @brief Fiilter a element and returns its NODE or NULL
+ * @param l1 The list which apply the function
+ * @param elem The element which search 
+*/
+node* find(node* l1, infotype elem);
+
+/*  ======================= Operations which modify a list ========================*/
 
 /*
  * @brief Inserts a element from start of the list
