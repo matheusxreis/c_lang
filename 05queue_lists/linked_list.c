@@ -215,4 +215,29 @@ void remov(node**list, int index) {
   remov(&(*list)->next, index-1);
 };
 
+///// ============================= print list
 
+void print_list(node** list){
+
+  if(*list == NULL) {
+    return;
+  }
+
+  int type = (*list)->utype;
+
+  if(type == INT) {
+    printf(" %d ", (*list)->info.intInfo);
+  }else if (type == STRING) {
+    printf(" %s ", (*list)->info.strInfo);
+  }else if (type == CHAR){
+     printf(" %c ", (*list)->info.charInfo);
+}else if(type == LIST) {
+    printf(" ( ");
+    print_list(&(*list)->info.listInfo);
+    printf(" ) ");
+  }
+
+  node* rest = tail(*list);
+  print_list(&rest);
+
+}
