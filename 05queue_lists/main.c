@@ -2,31 +2,30 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include"stack.c"
-
+#include"queue_w_list.c"
 
 int main() {
 
-  Stack s = create();
+  Queue q = create();
 
-  if(empty(&s)) {
-    printf("Stack is empty\n");
+  if(empty(&q)) {
+    printf("Queue is empty\n");
   }
-  push(&s, 40);
-  push(&s, 20);
-  push(&s, 10);
-  push(&s, 4);
+  enqueue(&q, 40);
+  enqueue(&q, 20);
+  enqueue(&q, 10);
+  enqueue(&q, 4);
   
-  if(empty(&s)) {
-    printf("Stack is empty\n");
+  if(empty(&q)) {
+    printf("Queue is empty\n");
   }
 
   for(int i = 0; i<4; i++) {
-    printf("%d\n", pop(&s));
+    printf("%d\n", dequeue(&q));
   }
   
-  if(empty(&s)) {
-    printf("Stack is empty\n");
+  if(empty(&q)) {
+    printf("Queue is empty\n");
   }
-}
 
+}

@@ -18,10 +18,12 @@
  * A item is always inserted in a queue at back,
  * and removed at front.
  * */
+#ifndef QUEUE
 typedef struct {
   eltype items[MAXQUEUE];
   int front, rear;
 } Queue;
+#endif
 
 
 /* Remove the item in front of queue and return it*/
