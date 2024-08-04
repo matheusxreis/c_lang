@@ -2,30 +2,27 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include"queue_w_list.c"
+#include"pqueue_w_list.c"
 
 int main() {
 
-  Queue q = create();
+  PQueue q = create();
 
-  if(empty(&q)) {
-    printf("Queue is empty\n");
-  }
-  enqueue(&q, 40);
-  enqueue(&q, 20);
-  enqueue(&q, 10);
-  enqueue(&q, 4);
-  
-  if(empty(&q)) {
-    printf("Queue is empty\n");
-  }
+  penqueue(&q, 21);
+  penqueue(&q, -1);
+  penqueue(&q, 40);
+  penqueue(&q, 20);
+  penqueue(&q, 277);
+  penqueue(&q, 10);
+  penqueue(&q, 4);
+  penqueue(&q, 21);
+  penqueue(&q, 1000);
+  penqueue(&q, 0);
 
-  for(int i = 0; i<4; i++) {
-    printf("%d\n", dequeue(&q));
+
+  for(int i = 0; i<10; i++) {
+    printf("%d\n", pdequeue(&q));
   }
   
-  if(empty(&q)) {
-    printf("Queue is empty\n");
-  }
 
 }

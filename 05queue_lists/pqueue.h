@@ -24,10 +24,12 @@
  * This implementation use a array,
  * which is not the best alternative
  */
+#ifndef PQUEUE
 typedef struct {
   eltype items[MAXQUEUE];
   int front, rear;
 } PQueue;
+#endif
 
 
 /* Remove the item in front of queue and return it*/
