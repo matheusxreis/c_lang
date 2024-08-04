@@ -2,69 +2,49 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include"linked_list.c"
+#include"clinked_list.c"
 
 int main() {
 
  
-  node* list = create();
+  node* queue = create();
+  node* stack = create();
 
   infotype x;
-  x.info.intInfo = 1;
+  x.info.intInfo = 5;
   x.utype = INT;
-  insert(&list, x);
+  
+  insert(&queue, x);
+  push(&stack, x);
 
-  x.info.intInfo = 1;
-  insert(&list, x);
-   
-  x.info.intInfo = 1;
-  insert(&list, x);
+  x.info.intInfo = 8;
+  insert(&queue, x);
+  push(&stack, x);
 
-  x.info.intInfo = 1;
-  insert(&list, x);
- 
-  x.info.intInfo = 50;
-  insert(&list, x);
+  x.info.intInfo = 12;
+  insert(&queue, x);
+  push(&stack, x);
 
-  x.info.intInfo = 1;
-  insert(&list, x);
+  x.info.intInfo = 41;
+  insert(&queue, x);
+  push(&stack, x);
+  
+  //pop(&list);
+  pop(&queue);
+  pop(&queue);
 
-  x.info.intInfo = 50;
-  insert(&list, x);
+  pop(&queue);
+  pop(&queue);
 
-  x.info.intInfo = 1;
-  insert(&list, x);  
+  insert(&queue, x);
 
-  print_list(&list);
+  node* n = pop(&queue);
+  insert(&queue, x);
+
+
+  print_list(&queue->next, &queue);
   printf("\n");
-
-  infotype elem;
-  elem.utype = INT;
-  elem.info.intInfo = 50;
-
-  node* list2 = filter(list, elem);
-
-  print_list(&list2);
+  print_list(&stack->next, &stack);
   printf("\n");
-
-  set(&list2, 1, x);
-
-  print_list(&list2);
-  printf("\n");
-
-  x.info.intInfo = 50;
-
-  node* searched = find(list, x);
-
-  print_list(&searched);
-  printf("\n");
-
-  x.info.intInfo = 99;
-
-  set(&searched, 0, x);
-
-  print_list(&searched);
-  printf("\n");
-
 
 }
