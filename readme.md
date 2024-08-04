@@ -1,8 +1,8 @@
-## C/C++ Lang
+## C Lang
 
-This repo is for my studies about C/C++ language.
+This repo is for my studies about C language.
 
-While studying C/C++, data structures, algorithms, design patterns I decide to make this repository to safe all my code and serving as future reference. Considering that is a study's repository, some codes may be not the best example, because it was done when I learned, but I believe all of them achieve their purpose.
+While studying C, data structures, algorithms, design patterns I decide to make this repository to safe all my code and serving as future reference. Considering that is a study's repository, some codes may be not the best example, because it was done when I learned, but I believe all of them achieve their purpose.
 
 Currently the repository is still in progress.
 
@@ -41,8 +41,16 @@ Currently the repository is still in progress.
 - [Quick Sort](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_3_9.c)
 - [N Queen Problem using Backtracking](https://github.com/matheusxreis/c_lang/blob/main/04recursion/ex3_3_10.c)
 
+#### Queue and Lists:
+
+- [Circular Queue implementation using Array](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/queue.c)
+- [Priority Queue implementation using Array](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/pqueue.c)
+- [Generical Linear Linked List implementation using pointer method](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/linked_list.c)
+- [Stack implementation using Linear Linked List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/stack.c)
+- [Queue implementation using Linear Linked List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/queue_w_list.c)
+- [Priority Queue implementation using Linear Linked List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/pqueue_w_list.c)
+- [Generical Circular Linked List implementation using pointer method](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/clinked_list.c)
 
 ### References 
 
 - [TENENBAUM, A. M.; YEDIDYAH LANGSAM; AUGENSTEIN, M. Data structures using C](https://a.co/d/hWFHbcE)
-- [GAMMA, E. et al. Design patterns : elements of reusable object-oriented software](https://a.c:xo/d/6d9OeHM)
