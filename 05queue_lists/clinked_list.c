@@ -9,6 +9,36 @@
 //  list = last element
 //  list.next = first element
 
+///// ============================= print list
+
+void print_list(node** list, node** last){
+
+  int stop = 0;
+  if(*list == *last) {
+    stop = 1;
+  }
+
+  int type = (*list)->utype;
+
+  if(type == INT) {
+    printf(" %d ", (*list)->info.intInfo);
+  }else if (type == STRING) {
+    printf(" %s ", (*list)->info.strInfo);
+  }else if (type == CHAR){
+     printf(" %c ", (*list)->info.charInfo);
+}else if(type == LIST) {
+    printf(" ( ");
+    print_list(&(*list)->info.listInfo, last);
+    printf(" ) ");
+  }
+
+  if(stop == 1) {
+    return;
+  }
+  node* rest = (*list)->next;
+  print_list(&rest, last);
+
+}
 void set_info(infotype* t1, infotype* t2){
 
   t1->utype = t2->utype;
@@ -92,6 +122,26 @@ node* pop(node** l) {
   return n;
 }
 
+
+
+int length(node* list, node* head) {
+
+  if(list == NULL) {
+    return 0;
+  }
+
+  if(list->next == head) {
+  ///  printf("never\n");
+    return 1;
+  }
+
+  return 1 + length(list->next, head);
+}
+
+int len(node* list){
+  return length(list, list);
+}
+
 node* create() { 
   node* n = (node*)malloc(sizeof(node)); 
   n = NULL;
@@ -99,33 +149,3 @@ node* create() {
 }
 
 
-///// ============================= print list
-
-void print_list(node** list, node** last){
-
-  int stop = 0;
-  if(*list == *last) {
-    stop = 1;
-  }
-
-  int type = (*list)->utype;
-
-  if(type == INT) {
-    printf(" %d ", (*list)->info.intInfo);
-  }else if (type == STRING) {
-    printf(" %s ", (*list)->info.strInfo);
-  }else if (type == CHAR){
-     printf(" %c ", (*list)->info.charInfo);
-}else if(type == LIST) {
-    printf(" ( ");
-    print_list(&(*list)->info.listInfo, last);
-    printf(" ) ");
-  }
-
-  if(stop == 1) {
-    return;
-  }
-  node* rest = (*list)->next;
-  print_list(&rest, last);
-
-}

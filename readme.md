@@ -50,6 +50,7 @@ Currently the repository is still in progress.
 - [Queue implementation using Linear Linked List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/queue_w_list.c)
 - [Priority Queue implementation using Linear Linked List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/pqueue_w_list.c)
 - [Generical Circular Linked List implementation using pointer method](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/clinked_list.c)
+- [Josephus Problem using Circular List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/josephus.c)
 
 ### References 
 
