@@ -1,3 +1,3 @@
 
-void prefix(char* infix, char* poststr); 
-void reverse(char* str, char* poststr);
+void prefix (char *infix, char *poststr);
+void reverse (char *str, char *poststr);

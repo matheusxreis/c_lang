@@ -6,22 +6,26 @@
 
 typedef int eltype;
 
-typedef struct nodetype {
+typedef struct nodetype
+{
   eltype value;
-  struct nodetype* next;
+  struct nodetype *next;
 } node;
 
 
-typedef struct {
-  node* front;
-  node* rear;
+typedef struct
+{
+  node *front;
+  node *rear;
 } Queue;
 
 #include"queue.h"
 
 
 
-Queue create() {
+Queue
+create ()
+{
 
   Queue q;
   q.rear = NULL;
@@ -30,35 +34,43 @@ Queue create() {
 
 }
 
-void enqueue(Queue* pq, eltype item) {
- 
-  node* n = (node*)malloc(sizeof(node));
+void
+enqueue (Queue * pq, eltype item)
+{
+
+  node *n = (node *) malloc (sizeof (node));
   n->value = item;
   n->next = NULL;
 
-  if(pq->front == NULL) {
-    pq->front = n;
-    pq->rear = n;
-    return;
-  }
+  if (pq->front == NULL)
+    {
+      pq->front = n;
+      pq->rear = n;
+      return;
+    }
 
   pq->rear->next = n;
   pq->rear = n;
 }
 
-eltype dequeue(Queue* pq) {
+eltype
+dequeue (Queue * pq)
+{
 
-  if(pq->front == NULL) {
-    printf("Queue Underflow occurs\n");
-    exit(1);
-  }
+  if (pq->front == NULL)
+    {
+      printf ("Queue Underflow occurs\n");
+      exit (1);
+    }
 
   eltype item = pq->front->value;
-  pq->front = pq->front->next; 
-  
-  return item; 
+  pq->front = pq->front->next;
+
+  return item;
 }
 
-int empty(Queue* pq){
+int
+empty (Queue * pq)
+{
   return (pq->front == NULL || pq->rear == NULL);
 }

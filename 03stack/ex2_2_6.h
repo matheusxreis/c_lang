@@ -6,28 +6,29 @@
  * Not care how the Stack's implementation is done in language (but if the lang has not
  * a array type, its Stack's implementation probably is not using a Array)
  */
-typedef struct {
- struct Stack s1;
- struct Stack s2;
- int size;
-} Array;  
+typedef struct
+{
+  struct Stack s1;
+  struct Stack s2;
+  int size;
+} Array;
 
 /*
  * Extract the element from index position, from Array collection
  */
-extern eltype extract(Array* a, int index); // return arr[i] 
+extern eltype extract (Array * a, int index);	// return arr[i] 
 
 /**
  * Insert an element in Array's index position 
  */
-extern void store(Array* a, int index, eltype element); // arr[i] = element 
+extern void store (Array * a, int index, eltype element);	// arr[i] = element 
 
 /*
  * Define a array, passing a size to it
  */
-extern Array create_arr(int size);
+extern Array create_arr (int size);
 
 /*
  * Returns if a index is valid or not;
  */
-extern bool valid(Array* a, int index);
+extern bool valid (Array * a, int index);

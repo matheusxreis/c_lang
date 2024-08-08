@@ -11,41 +11,56 @@
 
 ///// ============================= print list
 
-void print_list(node** list, node** last){
+void
+print_list (node ** list, node ** last)
+{
 
   int stop = 0;
-  if(*list == *last) {
-    stop = 1;
-  }
+  if (*list == *last)
+    {
+      stop = 1;
+    }
 
   int type = (*list)->utype;
 
-  if(type == INT) {
-    printf(" %d ", (*list)->info.intInfo);
-  }else if (type == STRING) {
-    printf(" %s ", (*list)->info.strInfo);
-  }else if (type == CHAR){
-     printf(" %c ", (*list)->info.charInfo);
-}else if(type == LIST) {
-    printf(" ( ");
-    print_list(&(*list)->info.listInfo, last);
-    printf(" ) ");
-  }
+  if (type == INT)
+    {
+      printf (" %d ", (*list)->info.intInfo);
+    }
+  else if (type == STRING)
+    {
+      printf (" %s ", (*list)->info.strInfo);
+    }
+  else if (type == CHAR)
+    {
+      printf (" %c ", (*list)->info.charInfo);
+    }
+  else if (type == LIST)
+    {
+      printf (" ( ");
+      print_list (&(*list)->info.listInfo, last);
+      printf (" ) ");
+    }
 
-  if(stop == 1) {
-    return;
-  }
-  node* rest = (*list)->next;
-  print_list(&rest, last);
+  if (stop == 1)
+    {
+      return;
+    }
+  node *rest = (*list)->next;
+  print_list (&rest, last);
 
 }
-void set_info(infotype* t1, infotype* t2){
+
+void
+set_info (infotype * t1, infotype * t2)
+{
 
   t1->utype = t2->utype;
-  
-  switch(t2->utype) {
+
+  switch (t2->utype)
+    {
     case INT:
-      t1->info.intInfo =t2->info.intInfo;
+      t1->info.intInfo = t2->info.intInfo;
       break;
     case CHAR:
       t1->info.charInfo = t2->info.charInfo;
@@ -56,7 +71,7 @@ void set_info(infotype* t1, infotype* t2){
     case STRING:
       t1->info.strInfo = t2->info.strInfo;
       break;
-  }
+    }
 }
 
 /*
@@ -70,53 +85,63 @@ void set_info(infotype* t1, infotype* t2){
  *
  *
  */
-void insert(node** l, infotype x) {
+void
+insert (node ** l, infotype x)
+{
 
-  node* n = (node*)malloc(sizeof(node));  
-  set_info((infotype*)n, &x);
+  node *n = (node *) malloc (sizeof (node));
+  set_info ((infotype *) n, &x);
 
-  if(*l == NULL){
-    (*l) = n;
-    (*l)->next = n;
-    return;
-  }
+  if (*l == NULL)
+    {
+      (*l) = n;
+      (*l)->next = n;
+      return;
+    }
 
-  n->next = (*l)->next; // step1
-  (*l)->next = n;       // step2
-  (*l) = n;             // step3 
- 
+  n->next = (*l)->next;		// step1
+  (*l)->next = n;		// step2
+  (*l) = n;			// step3 
+
 }
 
 
-void push(node** l, infotype x) {
+void
+push (node ** l, infotype x)
+{
 
-  node* n = (node*)malloc(sizeof(node));  
-  set_info((infotype*)n, &x);
+  node *n = (node *) malloc (sizeof (node));
+  set_info ((infotype *) n, &x);
 
-  if(*l == NULL){
-    (*l) = n;
-    (*l)->next = n;
-    return;
-  }
+  if (*l == NULL)
+    {
+      (*l) = n;
+      (*l)->next = n;
+      return;
+    }
 
   n->next = (*l)->next;
   (*l)->next = n;
 }
 
-node* pop(node** l) {
-  
-  if(*l == NULL) {
-    printf("Underflow occurs \n");
-    exit(1);
-  }
+node *
+pop (node ** l)
+{
 
-  if(*l == (*l)->next) {
-    node* n = *l;
-    (*l) = NULL;
-    return n;
-  }
-  
-  node* n = (*l)->next;
+  if (*l == NULL)
+    {
+      printf ("Underflow occurs \n");
+      exit (1);
+    }
+
+  if (*l == (*l)->next)
+    {
+      node *n = *l;
+      (*l) = NULL;
+      return n;
+    }
+
+  node *n = (*l)->next;
   (*l)->next = n->next;
 
   return n;
@@ -124,28 +149,34 @@ node* pop(node** l) {
 
 
 
-int length(node* list, node* head) {
+int
+length (node * list, node * head)
+{
 
-  if(list == NULL) {
-    return 0;
-  }
+  if (list == NULL)
+    {
+      return 0;
+    }
 
-  if(list->next == head) {
-  ///  printf("never\n");
-    return 1;
-  }
+  if (list->next == head)
+    {
+      ///  printf("never\n");
+      return 1;
+    }
 
-  return 1 + length(list->next, head);
+  return 1 + length (list->next, head);
 }
 
-int len(node* list){
-  return length(list, list);
+int
+len (node * list)
+{
+  return length (list, list);
 }
 
-node* create() { 
-  node* n = (node*)malloc(sizeof(node)); 
+node *
+create ()
+{
+  node *n = (node *) malloc (sizeof (node));
   n = NULL;
   return n;
 }
-
-

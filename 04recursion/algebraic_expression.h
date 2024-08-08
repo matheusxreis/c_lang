@@ -17,18 +17,17 @@
 
 
 /* get next symbol on string */
-char getsymb(char * str, int lenght, int* currentpos);
+char getsymb (char *str, int lenght, int *currentpos);
 
 /* read string*/
 
-void readstr(char* str, int *length);
+void readstr (char *str, int *length);
 
 /* verify if expression is valid */
-int expr(char* str, int lenght, int* currentPos);
+int expr (char *str, int lenght, int *currentPos);
 
 /* verify if term is valid */
-int term(char* str, int length, int* currentPos);
+int term (char *str, int length, int *currentPos);
 
 /* verify if factor is valid */
-int factor(char* str, int length, int* currentPos);
-
+int factor (char *str, int length, int *currentPos);

@@ -5,4 +5,4 @@
 //
 
 // In case of Ciruclar List this already works as a dequeue operation
-node* pop(node** l);
+node *pop (node ** l);

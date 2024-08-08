@@ -2,13 +2,15 @@
 #define ANIMAL_H
 
 
-struct animal_vtable {
-  const char* (*sound)(void); //function pointers return type *(name)(parameter)
+struct animal_vtable
+{
+  const char *(*sound) (void);	//function pointers return type *(name)(parameter)
 };
 
-typedef struct {
- const struct animal_vtable vtable_;
- const char* name;
+typedef struct
+{
+  const struct animal_vtable vtable_;
+  const char *name;
 } Animal;
 
 #endif
