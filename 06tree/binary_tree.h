@@ -37,7 +37,7 @@ node_b *maketree ();
  * @return void
  */
 void setdata (node_b * node, eltype value);
-
+eltype getdata (node_b * node);
 
 /**
  * @brief Set a subtree in left node from a tree
@@ -81,11 +81,44 @@ node_b *getfather (node_b * node);
  * @param node The tree which apply
  * @Returns true if is a left child, otherwise returns false
  */
-int isleft(node_b * node);
+int isleft (node_b * node);
 
 /**
  * @brief Verify if current node is a right child
  * @param node The tree which apply
  * @Returns true if is a right child, otherwise returns false
  */
-int isright(node_b * node); 
+int isright (node_b * node);
+
+/*
+ * TRAVERSE METHODS
+ *
+ * Unlike linear data structures, like array and 
+ * lists, there is no a intuitive way to visit 
+ * tree's nodes.
+ * Some ways are:
+ *  pre-order -> root, left and right
+ *  in-order -> left, root and right
+ *  post-order -> left, right and root
+ * */
+
+/**
+ * @brief Traverse the tree in pre-order
+ * @param node The tree
+ * @param cb A callback what receive the current element as parameter
+ **/
+void preorder (node_b * node, void (*cb) (eltype * elem));
+
+/**
+ * @brief Traverse the tree in-order
+ * @param node The tree
+ * @param cb A callback what receive the current element as parameter
+ **/
+void inorder (node_b * node, void (*cb) (eltype * elem));
+
+/**
+ * @brief Traverse the tree in post-order
+ * @param node The tree
+ * @param cb A callback what receive the current element as parameter
+ **/
+void postorder (node_b * node, void (*cb) (eltype * elem));
