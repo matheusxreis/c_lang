@@ -28,6 +28,6 @@ node_b *search (node_b * tree, eltype elem);
  * @brief Delete the elem from the BST
  * @param tree The tree which elem will be deleted
  * @param elem The element to be deleted
- * @return The node deleted
+ * @return void
  */
-node_b *del (node_b ** tree, eltype elem);
+void del (node_b ** tree, eltype elem);

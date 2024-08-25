@@ -32,8 +32,9 @@ main ()
   insert (&tree, 20);
   insert (&tree, 17);
   insert (&tree, 9);
-  insert (&tree, 14);
+  //insert (&tree, 14);
   insert (&tree, 5);
+  insert (&tree, 1);
 
   printf ("in-order: ");
   inorder (tree, &print);
@@ -42,6 +43,11 @@ main ()
   printf ("searching;...27 => %d\n", getdata (search (tree, 27)));
   printf ("searching;...17 => %d\n", getdata (search (tree, 17)));
 
+  node_b *test = search (tree, 16);
+  del (&tree, 20);
 
+  printf ("in-order: ");
+  inorder (tree, &print);
+  printf ("\n");
 
 }
