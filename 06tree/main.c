@@ -1,53 +1,33 @@
 #include<stdio.h>
-#include"binary_search_tree.c"
-
+#include"expression_tree.c"
 
 
 void
 print (eltype * elem)
 {
-  printf (" %d ", *elem);
+  printf (" %c ",  *elem);
 };
 
 
 int
 main ()
 {
+  node_b* tree = maketree();
+  char* str = "AB+C-";
+  printf("postfix: %s\n", str);
+
+  from_postfix(str, &tree);
+  
+  printf("infix: ");
+  inorder(tree, &print);
+  printf("\n");
+  
+  printf("postfix: ");
+  postorder(tree, &print);
+  printf("\n");
 
 
-//  int list[16] = { 14, 15, 4, 9, 7, 18, 3, 5, 16, 4, 20, 17, 9, 14, 5, 4 };
-//  find_repeat_elements (list, sizeof (list) / sizeof (int));
-
-  node_b *tree;
-  insert (&tree, 14);
-  insert (&tree, 15);
-  insert (&tree, 4);
-  insert (&tree, 9);
-  insert (&tree, 7);
-  insert (&tree, 18);
-  insert (&tree, 3);
-  insert (&tree, 5);
-  insert (&tree, 16);
-  insert (&tree, 4);
-  insert (&tree, 20);
-  insert (&tree, 17);
-  insert (&tree, 9);
-  //insert (&tree, 14);
-  insert (&tree, 5);
-  insert (&tree, 1);
-
-  printf ("in-order: ");
-  inorder (tree, &print);
-  printf ("\n");
-
-  printf ("searching;...27 => %d\n", getdata (search (tree, 27)));
-  printf ("searching;...17 => %d\n", getdata (search (tree, 17)));
-
-  node_b *test = search (tree, 16);
-  del (&tree, 20);
-
-  printf ("in-order: ");
-  inorder (tree, &print);
-  printf ("\n");
-
+  printf("prefix: ");
+  preorder(tree, &print);
+  printf("\n");
 }
