@@ -52,6 +52,18 @@ Currently the repository is still in progress.
 - [Generical Circular Linked List implementation using pointer method](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/clinked_list.c)
 - [Josephus Problem using Circular List](https://github.com/matheusxreis/c_lang/blob/main/05queue_lists/josephus.c)
 
+
+#### Trees:
+- [Binary Tree](https://github.com/matheusxreis/c_lang/blob/main/06tree/binary_tree.c)
+- [Binary Search Tree](https://github.com/matheusxreis/c_lang/blob/main/06tree/binary_search_tree.c)
+- [Expression Tree](https://github.com/matheusxreis/c_lang/blob/main/06tree/expression_tree.c)
+- [Min Heap using Array](https://github.com/matheusxreis/c_lang/blob/main/06tree/minheap.c)
+
+### Graphs:
+- [Graph implementation with Adjacency Matrix (directed, undirected, weighted and unweighted)](https://github.com/matheusxreis/c_lang/blob/main/07graph/adjacency_matrix.c)
+- [Dijsktra Algorithm using Adjacency Matrix and Min Heap](https://github.com/matheusxreis/c_lang/blob/main/07graph/dijkstra.c)
+
+
 ### References 
 
 - [TENENBAUM, A. M.; YEDIDYAH LANGSAM; AUGENSTEIN, M. Data structures using C](https://a.co/d/hWFHbcE)
